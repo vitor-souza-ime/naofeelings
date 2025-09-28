@@ -1,45 +1,41 @@
 # NAO Feelings
 
-Sistema de detecção de emoções em tempo real utilizando o robô **NAO**, combinando detecção de pessoas via YOLO e análise facial com DeepFace.
+Real-time emotion detection system using the **NAO robot**, combining YOLO-based person detection and facial emotion analysis with DeepFace.
 
-O repositório inclui a implementação em Python que captura imagens da câmera do NAO, detecta pessoas e classifica a emoção predominante, emitindo respostas por TTS (texto para fala) caso a confiança seja alta.
-
-Repositório: [https://github.com/vitor-souza-ime/naofellings](https://github.com/vitor-souza-ime/naofellings)
+Repository: [https://github.com/vitor-souza-ime/naofellings](https://github.com/vitor-souza-ime/naofellings)
 
 ---
 
-## Conteúdo
+## Overview
 
-- **main.py**: Script principal que conecta ao NAO, captura imagens, detecta pessoas e analisa emoções.
-- **requirements.txt**: Dependências necessárias para executar o projeto.
-- **README.md**: Documentação do projeto.
+This repository contains a Python implementation that connects to a NAO robot, captures camera images, detects people, and classifies their dominant emotion. The system can optionally provide feedback via TTS (text-to-speech) when the confidence is high.
 
 ---
 
-## Funcionalidades
+## Features
 
-1. Conexão com o robô NAO via IP.
-2. Captura de vídeo da câmera do NAO (resolução VGA, RGB).
-3. Detecção de pessoas usando modelo YOLOv10.
-4. Análise de emoções faciais com DeepFace.
-5. Feedback por TTS (opcional) quando a confiança da detecção é alta.
-6. Visualização em tempo real das caixas delimitadoras e emoções na tela.
-7. Controle de fluxo com cooldown entre detecções para evitar repetição excessiva.
+1. Connects to the NAO robot via IP.
+2. Captures video from NAO's camera (VGA resolution, RGB).
+3. Detects people using YOLOv10.
+4. Analyzes facial emotions using DeepFace.
+5. Optional TTS feedback for high-confidence emotion detection.
+6. Real-time visualization with bounding boxes and detected emotions.
+7. Cooldown mechanism to avoid repeated detections.
 
 ---
 
-## Requisitos
+## Requirements
 
-- Python 3.10 ou superior
-- Bibliotecas:
-  - `qi` (SDK do NAO)
+- Python 3.10 or higher
+- Python packages:
+  - `qi` (NAO SDK)
   - `opencv-python`
   - `numpy`
   - `deepface`
   - `ultralytics` (YOLOv10)
   - `PyQt5`
 
-Instalação das dependências:
+Install dependencies with:
 
 ```bash
 pip install -r requirements.txt
@@ -47,18 +43,18 @@ pip install -r requirements.txt
 
 ---
 
-## Configuração
+## Configuration
 
-1. Atualize o IP do seu robô NAO no arquivo `main.py`:
+1. Update your NAO robot's IP in `main.py`:
 
 ```python
-NAO_IP = "SEU_IP_DO_NAO"
+NAO_IP = "YOUR_NAO_IP"
 NAO_PORT = 9559
 ```
 
-2. Certifique-se de que o NAO esteja ligado e conectado à mesma rede do computador.
+2. Make sure NAO is powered on and connected to the same network as your computer.
 
-3. Caso queira usar TTS do NAO, habilite a função:
+3. To enable TTS output from NAO, uncomment the relevant line in the script:
 
 ```python
 # tts_service.say(phrase)
@@ -66,26 +62,26 @@ NAO_PORT = 9559
 
 ---
 
-## Execução
+## Running the System
 
-Para iniciar o sistema, execute:
+Run the main script with:
 
 ```bash
 python main.py
 ```
 
-O sistema exibirá uma janela com a imagem da câmera, caixas delimitadoras para pessoas detectadas e a emoção predominante. Pressione **`q`** para sair.
+The system will display a window showing the camera feed, bounding boxes around detected people, and the dominant emotion. Press **`q`** to exit.
 
 ---
 
-## Estrutura de Cooldown e Emoções
+## Cooldown and Emotion Settings
 
-* `DETECTION_COOLDOWN = 3.0`: Tempo mínimo entre análises de emoção da mesma pessoa.
-* `EMOTION_THRESHOLD = 0.6`: Confiança mínima da detecção para emissão de resposta.
+* `DETECTION_COOLDOWN = 3.0`: Minimum time between emotion analyses of the same person.
+* `EMOTION_THRESHOLD = 0.6`: Minimum confidence for triggering TTS response.
 
-Emoções suportadas e frases associadas:
+Supported emotions and associated phrases:
 
-| Emoção   | Frase                               |
+| Emotion  | Phrase                              |
 | -------- | ----------------------------------- |
 | happy    | You look happy! That's wonderful!   |
 | sad      | You seem sad. Is everything okay?   |
@@ -97,24 +93,23 @@ Emoções suportadas e frases associadas:
 
 ---
 
-## Observações
+## Notes
 
-* O script redimensiona automaticamente regiões de interesse pequenas para garantir boa análise facial.
-* Testado com imagens do NAO em condições de iluminação variadas para avaliar robustez.
-* Para desenvolvimento e testes locais sem NAO, pode-se adaptar o script para usar webcam.
+* Small regions of interest (ROIs) are automatically resized for reliable facial analysis.
+* Tested under varying lighting conditions for robustness.
+* Can be adapted to use a local webcam for development and testing without NAO.
 
 ---
 
-## Referências
+## References
 
 * YOLOv10: [https://ultralytics.com](https://ultralytics.com)
 * DeepFace: [https://github.com/serengil/deepface](https://github.com/serengil/deepface)
-* SDK do NAO: [https://developer.softbankrobotics.com](https://developer.softbankrobotics.com)
+* NAO SDK: [https://developer.softbankrobotics.com](https://developer.softbankrobotics.com)
 
 ---
 
-## Licença
+## License
 
 MIT License
-
 
